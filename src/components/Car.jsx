@@ -4,20 +4,61 @@ class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            color: 'red'
+            color: 'red',
+            show: true
         }
     }
-    changeColor = () => {
+    // changeColor = () => {
+    //     this.setState({
+    //         color: 'blue'
+    //     })
+    // }
+    // componentDidMount() {
+    //     setTimeout(() => {   
+    //         this.setState({
+    //             color: 'green'
+    //         })
+    //     }, 2000);
+    // }
+    // getSnapshotBeforeUpdate(prevProp, prevState) {
+    //     console.log('prev state:', prevState.color);
+    // }
+
+    // static getDerivedStateFromProps(props, state) {
+    //     return { color: props.colorDoor };
+    // }
+
+    // shouldComponentUpdate() {
+    //     return false
+    // }
+
+    Delete = () => {
         this.setState({
-            color: 'blue'
+            show: false
         })
     }
     render() {
-
+        let myheader;
+        if (this.state.show) {
+            myheader = <Child />
+        }
         return (
             <div>
-                Have a door color: {this.state.color} or {this.props.colorDoor}
-                <button onClick={this.changeColor}>change color</button>
+                {myheader}
+                <button onClick={this.Delete}>Delete</button>
+            </div>
+        );
+    }
+}
+
+class Child extends Component {
+    componentWillUnmount() {
+        alert('The component named Header is about to be unmounted.')
+    }
+    render() {
+        return (
+            <div>
+                <h1>Hello World</h1>
             </div>
         );
     }
