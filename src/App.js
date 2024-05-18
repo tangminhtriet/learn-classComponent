@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
-import Home from './components/Car';
 import './App.css';
+import ToDoFeature from './features/ToDo/ToDoFeature';
 
 class App extends Component {
 
-  color = 'black'
   render() {
     return (
       <div>
-        <Home colorDoor={this.color} />
-
+        <ToDoFeature />
       </div>
     );
   }
