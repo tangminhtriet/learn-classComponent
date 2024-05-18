@@ -57,6 +57,8 @@ class ToDoFeature extends Component {
             listToDo: newList
         })
     }
+    handleShowAll = () => {
+    }
     render() {
         return (
             <div>
@@ -65,9 +67,6 @@ class ToDoFeature extends Component {
                 <form onSubmit={this.handleSubmitFormToDo}>
                     <input type='text' value={this.state.todo} id='input' onChange={(e) => this.handleInputChange(e)} />
                 </form>
-                {/* <button>Show All</button>
-                <button>Completed</button>
-                <button>Show To Do</button> */}
             </div>
         );
     }
