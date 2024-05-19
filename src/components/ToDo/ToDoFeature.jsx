@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import ToDoList from './ToDoList';
-import { makeStyles } from '@material-ui/styles';
 import './style.css'
 
 class ToDoFeature extends Component {
@@ -63,10 +62,10 @@ class ToDoFeature extends Component {
         return (
             <div>
                 <h2>To Do List</h2>
-                <ToDoList list={this.state.listToDo} onToDoClick={this.handleToggleToDo} />
                 <form onSubmit={this.handleSubmitFormToDo}>
                     <input type='text' value={this.state.todo} id='input' onChange={(e) => this.handleInputChange(e)} />
                 </form>
+                <ToDoList list={this.state.listToDo} onToDoClick={this.handleToggleToDo} />
             </div>
         );
     }
