@@ -7,7 +7,7 @@ class PostList extends Component {
         return (
             <ul>
                 {this.props.list.map(post => (
-                    <li>
+                    <li key={post.id}>
                         {post.title}
                     </li>
                 ))}

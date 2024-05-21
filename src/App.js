@@ -5,6 +5,7 @@ import PostList from './components/Post/PostList';
 import Pagination from './components/Pagination';
 import queryString from 'query-string';
 import SearchFilter from './components/SearchFilter';
+import Clock from './components/Clock/Clock';
 class App extends Component {
   constructor(props) {
     super(props)
@@ -20,6 +21,7 @@ class App extends Component {
         _limit: 10,
         title_like: ''
       },
+      clockVisible: true
     }
   }
   async fetchPostList() {
@@ -28,11 +30,9 @@ class App extends Component {
       const requestUrl = `http://js-post-api.herokuapp.com/api/posts?${params}`
       const response = await fetch(requestUrl)
       const responseJSON = await response.json()
-      console.log(responseJSON);
       this.setState({
         postList: responseJSON.data,
       })
-      console.log(this.state.postList);
     } catch (error) {
       console.log(error);
     }
@@ -60,7 +60,6 @@ class App extends Component {
       }
 
     })
-    console.log(this.state.filter._page);
   }
   handleFilterChange = (formValue) => {
     this.setState({
@@ -71,6 +70,11 @@ class App extends Component {
       }
     })
   }
+  handleClearClock = () => {
+    this.setState({
+      clockVisible: false
+    })
+  }
   render() {
     return (
       <div>
@@ -79,7 +83,13 @@ class App extends Component {
         <SearchFilter onChange={this.handleSearchChange} onSubMit={this.handleFilterChange} />
         <PostList list={this.state.postList} />
         <Pagination pagination={this.state.pagination} onChangePage={this.handleChangePage} />
+
+        <div style={{ display: 'flex', justifyContent: 'center', paddingBottom: '10px' }}>
+          <button onClick={() => this.setState({ clockVisible: false })} style={{ textAlign: 'center' }}>Clear Clock</button>
+        </div>
+        <div style={{ textAlign: 'center' }}>{this.state.clockVisible && <Clock />}</div>
       </div>
+
     );
   }
 }
